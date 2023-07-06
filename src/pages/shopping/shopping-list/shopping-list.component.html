@@ -1,0 +1,39 @@
+
+<div class="lg:flex-row md:flex w-full p-0 m-0 ml-0 sm:flex-col">
+  <div class="lg:w-5/12  md:w-full sm:w-full"><!--lg:h-screen-->
+    <div class="col-2 bg-red-950 px-24 py-5">
+      <app-shopping-edit></app-shopping-edit>
+      <div class="col-2 bg-red-950 px-0 py-5 m-0">
+
+        <hr>
+        <ul class="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400">
+
+          <a class="flex items-center space-x-3"
+            *ngFor="let ingredient of ingredients" style="cursor: pointer;"
+            >
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+              fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"></path></svg>{{ingredient.name}}({{ingredient.amount}})
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="lg:w-7/12  md:w-full sm:w-full"><!--lg:h-screen-->
+    <div class="col-2 bg-color-primary-2 px-24 py-5">
+        <!-- Three ways to type properties for directives -->
+      <!-- <p appColorDirective>Msasdjasdasdasd</p> -->
+      <!-- <p appColorDirective [defaultColor]="'green'" [highLightColor]="'yellow'">Msasdjasdasdasd</p> -->
+    
+    <button type="button" (click)="isOpen=!isOpen" class=" border-2 rounded-md bg-cyan-50 p-2 m-2 hover:bg-slate-500">Change</button>
+    <div *appCheck="!isOpen">
+      <p appColorDirective defaultColor="green" highLightColor="orange">Msasdjasdasdasd</p>
+    </div>
+
+    </div>
+  </div>
+</div>
+

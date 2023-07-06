@@ -1,0 +1,56 @@
+<div *ngIf="recipeSelected" class="flex-row w-full bg-color-primary-1 mx-auto p-10">
+  <div class="w-full translate-x-0">
+    <img src={{recipeSelected&&recipeSelected.imagePath}}
+      class="h-auto max-w-sm rounded-2xl pt-4" alt sizes srcset>
+  </div>
+  <div class="w-full">
+    <h2 class="text-4xl font-extrabold dark:text-black">{{recipeSelected&&recipeSelected.name}}</h2>
+    <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay"
+      (mouseover)="isOpen=!isOpen"
+      (click)="isOpen=!isOpen"
+      data-dropdown-delay="500" data-dropdown-trigger="hover"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-44"
+      type="button">Dropdown hover <svg class="w-4 h-4 ml-2" aria-hidden="true"
+        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+    <!-- Dropdown menu -->
+    <div id="dropdownDelay"
+      (mouseover)="isOpen=true"
+      (mouseleave)="isOpen=false"
+      *ngIf="isOpen"
+      class="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2"
+      style="position:absolute;">
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownDelayButton">
+        <li >
+          <a (click)="addProductToShoppingList()"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >Go Shopping List</a>
+        </li>
+        <li>
+          <a [routerLink]="['/home/']+[index]+['/edit']" routerLinkActive="router-link-active"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+        </li>
+        <li>
+          <a href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+        </li>
+        <li>
+          <a href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+            out</a>
+        </li>
+      </ul>
+    </div>
+
+    <p>Ingredients</p>
+    <ul  *ngFor="let item of recipeSelected&&recipeSelected.ingredients">
+      <li>Ingredient: {{item.name}} Quantity: {{item.amount}}</li>
+    </ul>
+    <p>{{recipeSelected&&recipeSelected.description||null}}</p>
+  </div>
+
+</div>
+<div *ngIf="!recipeSelected" class="flex-row w-full bg-color-primary-1 mx-auto p-10">
+  <h1 class="text-center text-xl">Please select a recipe</h1>
+</div>

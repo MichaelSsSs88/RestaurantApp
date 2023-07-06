@@ -1,0 +1,6 @@
+
+<hr>
+<div class="box-border h-auto w-full p-4 my-5 border-4 rounded-lg bg-gray-400 active:bg-white focus:bg-white" *ngFor="let item of recipeList ; index as i"  [routerLink]="[i]">
+    <app-recipe-item name={{item.name}} description={{item.description}} imagePath={{item.imagePath}} ingredients={{item.ingredients}}></app-recipe-item>
+</div>
+

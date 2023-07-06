@@ -1,0 +1,37 @@
+
+<div class="lg:flex-row md:flex w-full h-screen p-0 m-0 ml-0 sm:flex-col">
+  <div class="lg:w-5/12  md:w-full sm:w-full"><!--lg:h-screen-->
+    <div class="col-2 bg-red-950 px-24 py-5 h-screen">
+      <!-- (miEvento)="manejarEvento($event)" Another way to use event emitter -->
+      <div class=" w-full">
+
+        <button [routerLink]="['new']" routerLinkActive="router-link-active" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              New Item
+          </span>
+        </button>
+      </div>
+      <app-recipe-list></app-recipe-list>
+
+    </div>
+  </div>
+  <div class="lg:w-7/12 md:w-full sm:w-full bg-slate-600">
+    <!--<app-recipe-detail name={{selectedRecipe&&selectedRecipe.name}} description={{selectedRecipe&&selectedRecipe.description}} imagePath={{selectedRecipe&&selectedRecipe.imagePath}} [ingredients]="selectedRecipe&&selectedRecipe.ingredients"></app-recipe-detail>-->
+
+    <router-outlet></router-outlet>
+    <!-- <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control> -->
+    <div class="flex-row w-full columns-2">
+      <div class="bg-blue-700 ">
+        <app-even *ngFor="let evenNumber of evenNumbers" [even]="evenNumber" class="bg-red-950"></app-even>
+      </div>
+      <div class="bg-red-700 ">
+        <app-odd *ngFor="let oddNumber of oddNumbers" [odd]="oddNumber"  class="bg-red-950"></app-odd>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+
