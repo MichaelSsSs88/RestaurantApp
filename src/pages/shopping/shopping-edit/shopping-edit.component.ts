@@ -1,7 +1,10 @@
+import { ingredient } from './../../../shared/ingredient.model';
 import { ChangeDetectorRef, Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Subscription, filter } from 'rxjs';
 import { ShoppingService } from 'src/services/shopping.service';
-import { ingredient } from 'src/shared/ingredient.model';
+
 
 
 
@@ -11,23 +14,57 @@ import { ingredient } from 'src/shared/ingredient.model';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent{
+export class ShoppingEditComponent implements OnInit, OnDestroy{
 
   class_email: string = "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6";
   class_quantity: string = "peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6";
   isFormReady: boolean = false;
+  index:number=null;
+  ingredient:ingredient=null;
+  private subscriber:Subscription;
+
+  signin: FormGroup;
   //@Output() addProduct = new EventEmitter();
 
-  constructor(private cd: ChangeDetectorRef, private shoppingService:ShoppingService) { }
+  constructor(private cd: ChangeDetectorRef, private shoppingService:ShoppingService, private router:Router, private route: ActivatedRoute) {
+
+    this.subscriber= this.router.events.pipe(filter(event=> event instanceof NavigationEnd)).subscribe((event)=>{
+        this.index= this.route.snapshot.params['id'];
+        this.index&&(this.ingredient=this.shoppingService.getIngredientById(this.index));
+        this.signin&&this.signin.setValue({name:this.ingredient.name, quantity:this.ingredient.amount});
+        console.log(this.ingredient);
+      })
+  }
+
+
+
 
   ngAfterContentChecked(): void {
     this.cd.detectChanges();//Take care, this help to solve issues about changes on the style change detection
   }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.signin= new FormGroup({
+      name: new FormControl('', [Validators.required, this.validateName,this.forbbidenName]),
+      quantity: new FormControl('', [Validators.required, this.validateQuantity]),
+    });
+    this.ingredient&&this.signin.setValue({name:this.ingredient.name, quantity:this.ingredient.amount});
+    //this.ingredient=this.shoppingService.getIngredientById(this.index);
+    console.log(this.ingredient);
+    console.log("asdasdasd")
+    /*Important methods*/
+    this.signin.valueChanges.subscribe(data => {console.log(data);});
+    this.signin.statusChanges.subscribe(data=>{console.log(data);});
 
-  signin: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, this.validateName]),
-    quantity: new FormControl('', [Validators.required, this.validateQuantity]),
-  });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriber.unsubscribe();
+  }
+
+
+
 
   public register(): void {
     const user = this.signin.value;
@@ -37,12 +74,15 @@ export class ShoppingEditComponent{
     //this.signin.setValidators(Touch:)
   }
 
+
+
   sendData(name:string, quantity:number) {
     const data = {
       "name":name,
       "quantity":quantity,
     };
-      this.shoppingService.addIngredient(new ingredient(name, quantity));
+      this.index?(this.shoppingService.editIngredient(this.index,new ingredient(name, quantity)),this.router.navigate(['shopping/new'])):this.shoppingService.addIngredient(new ingredient(name, quantity));
+
       //this.ingredients.push(new ingredient(data.name, data.quantity));
     //this.addProduct.emit(data);
   }
@@ -75,7 +115,6 @@ export class ShoppingEditComponent{
   }
 
   private validateQuantity(control: AbstractControl): Object {
-    console.log("Aqui ando")
     let error: any[] = new Array<string>();
     try {
       const quantity:number = control.value;
@@ -92,7 +131,14 @@ export class ShoppingEditComponent{
     return error;
   }
 
+  public forbbidenName(control:FormControl):{[s:string]:boolean}{
 
+    //To make validations,
+    if(control.value!=null&&control.value.toLowerCase().includes("a")===false){
+      return{"nameIsForbidden":true};
+    }
+      return null;
+  }
   public getError(controlName: string): any[] {
     let error = [];
     const control = this.signin.get(controlName);

@@ -22,6 +22,9 @@ export class ShoppingService {
   getIngredients(){
     return this.ingredients.slice();
   }
+  getIngredientById(id:number){
+    return this.ingredients[id];
+  }
 
   addIngredient=(ingredient:ingredient) => {
     this.ingredients.push(ingredient);
@@ -29,9 +32,21 @@ export class ShoppingService {
     console.log(this.ingredients)
   }
 
+  editIngredient=(id:number,ingredient:ingredient) => {
+    this.ingredients[id].name=ingredient.name;
+    this.ingredients[id].amount=ingredient.amount;
+    this.changeIngredients.next(this.ingredients);
+  }
+
+  deleteIngredient(id:number):void{
+    this.ingredients=this.ingredients.filter((item,index)=>{
+      if(id!=index){return item};
+    })//.splice(id, id-1);
+    this.changeIngredients.next(this.ingredients);
+  }
+
   addIngredients=(ingredients:ingredient[]) => {
     this.ingredients.push(...ingredients);
     this.changeIngredients.next(this.ingredients);
-    console.log(this.ingredients)
   }
 }

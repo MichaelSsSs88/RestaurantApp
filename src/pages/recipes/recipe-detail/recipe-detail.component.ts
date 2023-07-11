@@ -63,7 +63,11 @@ export class RecipeDetailComponent implements OnInit,OnChanges,OnDestroy {
   addProductToShoppingList(){
     this.shoppingService.addIngredients(this.recipeSelected.ingredients);
     //this.shoppingService.changeIngredients.emit(this.ingredients);
-    this._router.navigate(['shopping'])
+    this._router.navigate(['shopping/new'])
+  }
+  deleteRecipe(){
+    this.recipeService.deleteRecipeById(this.index);
+    this._router.navigate(['/home']);
   }
 
 

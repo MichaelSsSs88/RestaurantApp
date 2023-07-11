@@ -1,39 +1,60 @@
 
-<div class="lg:flex-row md:flex w-full p-0 m-0 ml-0 sm:flex-col">
-  <div class="lg:w-5/12  md:w-full sm:w-full"><!--lg:h-screen-->
-    <div class="col-2 bg-red-950 px-24 py-5">
-      <app-shopping-edit></app-shopping-edit>
-      <div class="col-2 bg-red-950 px-0 py-5 m-0">
+<div class="lg:flex-row md:flex w-full p-0 m-0 ml-0 sm:flex-col min-h-full">
+  <div class="lg:w-5/12  md:w-full sm:w-full min-h-full"><!--lg:h-screen-->
+    <div class="col-2 bg-color-primary-3 min-h-full lg:px-24 py-5 sm:px-8">
+      <h1 class="text-white text-2xl pb-4  lg:px-0 md:px-0 sm:px-0 xs:px-4">New
+        Ingredient</h1>
+      <router-outlet></router-outlet>
+      <div
+        class="col-2 bg-color-primary-3 lg:mx-0 py-5 sm:mx-0 lg:px-0 md:px-0 md:mx-0 sm:px-0 xs:mx-4  xs:px-0">
+        <h1 class="text-white text-2xl">Ingredients</h1>
+        <hr class="mb-4 border-2">
+        <ul class="mb-8 space-y-4 text-left text-gray-500 dark:text-white ">
+          <div *ngFor="let ingredient of ingredients; ; index as i"
+            class="grid grid-cols-12">
+            <a
+              class="flex col-end-10 col-start-1 space-x-3 border-2 rounded-md hover:bg-white hover:scale-y-125 hover:text-black w-full"
+              style="cursor: pointer;"
+              [routerLink]="['/shopping/']+[i]+['/edit']"
+              routerLinkActive="router-link-active">
+              <svg
+                class="flex-shrink-0 w-5 h-5"
+                fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path></svg>{{ingredient.name}}({{ingredient.amount}})
 
-        <hr>
-        <ul class="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400">
+            </a>
+            <button (click)="delete(i)" type="button"
+              class="ml-auto -mx-1.5  bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5  hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700 col-start-12"
+              data-dismiss-target="#alert-border-2" aria-label="Close">
+              <span class="sr-only">Dismiss</span>
+              <svg class="w-3 h-3" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+              </svg>
+            </button>
+          </div>
 
-          <a class="flex items-center space-x-3"
-            *ngFor="let ingredient of ingredients" style="cursor: pointer;"
-            >
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-              fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg>{{ingredient.name}}({{ingredient.amount}})
-          </a>
         </ul>
       </div>
     </div>
   </div>
   <div class="lg:w-7/12  md:w-full sm:w-full"><!--lg:h-screen-->
     <div class="col-2 bg-color-primary-2 px-24 py-5">
-        <!-- Three ways to type properties for directives -->
+      <!-- Three ways to type properties for directives -->
       <!-- <p appColorDirective>Msasdjasdasdasd</p> -->
       <!-- <p appColorDirective [defaultColor]="'green'" [highLightColor]="'yellow'">Msasdjasdasdasd</p> -->
-    
-    <button type="button" (click)="isOpen=!isOpen" class=" border-2 rounded-md bg-cyan-50 p-2 m-2 hover:bg-slate-500">Change</button>
-    <div *appCheck="!isOpen">
-      <p appColorDirective defaultColor="green" highLightColor="orange">Msasdjasdasdasd</p>
-    </div>
+
+      <button type="button" (click)="isOpen=!isOpen"
+        class=" border-2 rounded-md bg-cyan-50 p-2 m-2 hover:bg-slate-500">Change</button>
+      <div *appCheck="!isOpen">
+        <p appColorDirective defaultColor="green" highLightColor="orange">Msasdjasdasdasd</p>
+      </div>
 
     </div>
   </div>
 </div>
-

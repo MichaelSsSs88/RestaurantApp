@@ -1,22 +1,28 @@
 
-  <div class="border-4 rounded-xl p-8 bg-color-primary-1">
-    <form [formGroup]="signin" (ngSubmit)="register()" class="text-left">
+<div
+  class="border-4 rounded-xl p-8 bg-color-primary-1 lg:mx-0 py-5 sm:mx-0 md:mx-0 xs:mx-4">
+  <form [formGroup]="signin" (ngSubmit)="register()" class="text-left">
 
-      <div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-6 group">
-            <input type="text" formControlName="name" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required/>
-            <label for="name" className={{class_email}}>Name</label>
-            <span class="text-red-700">{{ getError('name')}}</span>
-        </div>
-        <div class="relative z-0 w-full mb-6 group">
-            <input type="number" formControlName="quantity" name="quantity" id="quantity" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="quantity" className={{class_quantity}}>Quantity</label>
-            <span *ngFor="let error of getError('quantity')" class="text-red-700">{{error}}</span>
-        </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input type="text" formControlName="name" name="name" id="name"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" " required />
+        <label for="name" className={{class_email}}>Name</label>
+        <span class="text-red-700">{{ getError('name')}}</span>
       </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input type="number" pattern="^[1-9]+[0-9]*$" formControlName="quantity"
+          name="quantity" id="quantity"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" " required />
+        <label for="quantity" className={{class_quantity}}>Quantity</label>
+        <span *ngFor="let error of getError('quantity')" class="text-red-700">{{error}}</span>
+      </div>
+    </div>
 
-      <!-- <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button> -->
-      <button  [disabled]="!isFormReady" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-20">Register me!</button>
-    </form>
-  </div>
-
+    <!-- <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button> -->
+    <button [disabled]="this.signin.status==='INVALID'" type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-20">{{index?'Update':'Save'}}</button>
+  </form>
+</div>

@@ -12,8 +12,12 @@ import { RecipeService } from 'src/services/recipe.service';
 export class RecipeListComponent implements OnInit {
   //@Output() miEvento = new EventEmitter();
   recipeList:recipe [];
+  filteredStatus:string ='';
 
   constructor(private recipeService: RecipeService, private router: Router){
+    this.recipeService.recipeListChanged.subscribe((recipeList) =>{
+      this.recipeList =recipeList;
+    })
 
   }
   ngOnInit(): void {

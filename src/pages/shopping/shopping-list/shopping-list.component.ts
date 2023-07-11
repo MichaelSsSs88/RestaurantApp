@@ -32,4 +32,9 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
    this.subscriber.unsubscribe();
   }
 
+  delete(id:number):void{
+    this.shoppingService.deleteIngredient(id);
+    console.log(id);
+  }
+
 }

@@ -1,0 +1,4 @@
+/*PROPERTIES FROM ANGULAR*/
+input.ng-invalid.ng-touched{
+  border-bottom: 1px solid red;
+}

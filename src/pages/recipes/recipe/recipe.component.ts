@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, Output } from '@angular/core';
 import { RecipeService } from 'src/services/recipe.service';
 import { recipe } from '../recipe.model';
@@ -18,7 +19,7 @@ export class RecipeComponent implements OnInit{
 
     oddNumbers:number[] = [];
     evenNumbers:number[] =[];
-  constructor(private recipeService: RecipeService, private gameService:GameService){
+  constructor(private recipeService: RecipeService, private gameService:GameService, private http:HttpClient){
     this.gameService.intervalFired.subscribe((newNumber:number)=>this.onIntervalFired(newNumber));
 
   }
@@ -38,5 +39,14 @@ export class RecipeComponent implements OnInit{
     // }
     onIntervalFired(firedNumber:number) {
       firedNumber % 2 === 0 ? this.evenNumbers.push(firedNumber):this.oddNumbers.push(firedNumber);
+      }
+x
+      postData(){
+
+        this.recipeService.getRecipes().forEach(recipeAdded=>{
+          this.http.post("https://restaurant-app-a3c2e-default-rtdb.firebaseio.com/recipe.json",recipeAdded).subscribe(responseData => {console.log(responseData)});
+        })
+
+        alert("ready");
       }
 }

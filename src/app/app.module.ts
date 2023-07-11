@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from  '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,10 @@ import { ShoppingService } from 'src/services/shopping.service';
 import { NotFoundComponent } from 'src/pages/not-found/not-found.component';
 import { GameService } from 'src/services/game.service';
 import { RecipeEditComponent } from 'src/pages/recipes/recipe-edit/recipe-edit.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import Swal from 'sweetalert2'
+import { ShortenPipe } from 'src/pipes/shorten.pipe';
+import { FilterPipe } from 'src/pipes/filter.pipe';
 
 
 
@@ -50,6 +55,8 @@ import { RecipeEditComponent } from 'src/pages/recipes/recipe-edit/recipe-edit.c
     ColorDirectiveDirective,
     CheckDirective,
     DropdownDirective,
+    ShortenPipe,
+    FilterPipe
 
   ],
   imports: [
@@ -57,13 +64,15 @@ import { RecipeEditComponent } from 'src/pages/recipes/recipe-edit/recipe-edit.c
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     AccountService,
     LogginService,
     RecipeService,
     ShoppingService,
-    GameService
+    GameService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
