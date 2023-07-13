@@ -15,6 +15,12 @@ export class ShoppingService {
   new ingredient("Rice", 5),
   new ingredient("Pork", 5),
   new ingredient("Beans", 5),
+  new ingredient("Apple", 5),
+  new ingredient("Banana", 5),
+  new ingredient("Chicken", 5),
+  new ingredient("Rice", 5),
+  new ingredient("Pork", 5),
+  new ingredient("Beans", 5),
   ];
 
   constructor() { }

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ShoppingService } from 'src/services/shopping.service';
 import { ingredient } from 'src/shared/ingredient.model';
@@ -18,6 +19,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
 
   constructor(private shoppingService: ShoppingService) {
     this.subscriber=this.shoppingService.changeIngredients.subscribe((ingredients:ingredient[]) => {this.ingredients = ingredients});
+
   }
 
   /*addIngredient(data: any) {

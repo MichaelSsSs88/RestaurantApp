@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.ingredients=this.shoppingService.ingredients;
     this.accounts=this.accountService.accounts;
   }
 

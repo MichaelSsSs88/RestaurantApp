@@ -46,7 +46,5 @@ x
         this.recipeService.getRecipes().forEach(recipeAdded=>{
           this.http.post("https://restaurant-app-a3c2e-default-rtdb.firebaseio.com/recipe.json",recipeAdded).subscribe(responseData => {console.log(responseData)});
         })
-
-        alert("ready");
       }
 }
