@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivateFn, CanActivateChildFn} from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivateFn, CanActivateChildFn } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -8,9 +8,9 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService{
+export class AuthGuardService {
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
   /*canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     alert("Checking for activated");
     return false;
@@ -24,12 +24,13 @@ export class AuthGuardService{
     const authService = inject(AuthService);
     const router = inject(Router);
     //authService.loggin();
-    return authService.isAuthenticated().then((authenticated:boolean) => {
+    return authService.isAuthenticated().then((authenticated: boolean) => {
 
-        if(authenticated)return authenticated;
-        else this.router.navigate(["/asdasdsad"])
+      if (authenticated) return authenticated;
+      else  this.router.navigate(["/asdasdsad"])
 
     }).catch((err) => {
+      alert(err);
       return false;
     });
   };

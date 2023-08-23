@@ -34,7 +34,11 @@ export class RecipeEditComponent implements OnInit, OnDestroy{
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event) => {
       this.index=this.route.snapshot.params['id'];
+      (this.index&&this.index>this.recipeService.getRecipes().length)&&(
+        this.errorWarning()
+      )
       this.index?this.recipeSelected = this.recipeService.getRecipeById(this.index):this.recipeSelected= new recipe("","","","",new Array<ingredient>());
+
     });
     this.signin= new FormGroup({
       name_ingredient: new FormControl('', [Validators.required, this.validateName]),
@@ -225,10 +229,31 @@ export class RecipeEditComponent implements OnInit, OnDestroy{
     });
   }
 
-
-
-
-
-
-
+  errorWarning() {
+    let timerInterval
+    Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      html: 'This item does not exist',
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+       // const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          //b.textContent = Swal.getTimerLeft().toString()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        this.router.navigate(['/home']);
+      }
+    })
+  }
 }
+
+

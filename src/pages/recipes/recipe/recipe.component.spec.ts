@@ -25,4 +25,9 @@ describe('RecipeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should createsas', () => {
+
+   // component = fixture.componentInstance;
+
+  });
 });

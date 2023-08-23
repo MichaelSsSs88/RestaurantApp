@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthenticationService } from 'src/services/authentication.service';
 import { ShoppingService } from 'src/services/shopping.service';
 import { ingredient } from 'src/shared/ingredient.model';
 
@@ -17,7 +18,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
   subscriber: Subscription;
   ingredients:ingredient[]=[];
 
-  constructor(private shoppingService: ShoppingService) {
+  constructor(private shoppingService: ShoppingService,private authenttication: AuthenticationService) {
     this.subscriber=this.shoppingService.changeIngredients.subscribe((ingredients:ingredient[]) => {this.ingredients = ingredients});
 
   }
@@ -27,6 +28,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
     //this.ingredients.push(new ingredient(data.name, data.quantity));
   }*/
   ngOnInit(): void {
+    this.authenttication.autoSingUp();
     this.ingredients= this.shoppingService.getIngredients();
   }
 

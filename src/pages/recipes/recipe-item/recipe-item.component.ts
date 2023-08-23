@@ -14,7 +14,7 @@ export class RecipeItemComponent {
    @Input() description:string;
    @Input() imagePath:string;
 
-   constructor(private recipeService:RecipeService) {
+   constructor() {
    }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/services/account.service';
+import { AuthenticationService } from 'src/services/authentication.service';
 import { ShoppingService } from 'src/services/shopping.service';
 import { ingredient } from 'src/shared/ingredient.model';
 
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   accounts:{name:string,status:string}[] = [];
   ingredients:ingredient[]=[];
 
-  constructor(private accountService:AccountService, private shoppingService:ShoppingService) {
+  constructor(private accountService:AccountService, private shoppingService:ShoppingService,private authenttication: AuthenticationService) {
     //Method to manage event emitter in other way
     this.shoppingService.changeIngredients.subscribe((ingredients:ingredient[]) => {this.ingredients = ingredients});
     this.accountService.statusUpdated.subscribe((result:{id:number,status: string}) => {
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.authenttication.autoSingUp()
     this.ingredients=this.shoppingService.ingredients;
     this.accounts=this.accountService.accounts;
   }

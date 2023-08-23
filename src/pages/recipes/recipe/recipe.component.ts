@@ -19,7 +19,7 @@ export class RecipeComponent implements OnInit{
 
     oddNumbers:number[] = [];
     evenNumbers:number[] =[];
-  constructor(private recipeService: RecipeService, private gameService:GameService, private http:HttpClient){
+  constructor(private gameService:GameService,){
     this.gameService.intervalFired.subscribe((newNumber:number)=>this.onIntervalFired(newNumber));
 
   }
@@ -41,10 +41,10 @@ export class RecipeComponent implements OnInit{
       firedNumber % 2 === 0 ? this.evenNumbers.push(firedNumber):this.oddNumbers.push(firedNumber);
       }
 x
-      postData(){
+      // postData(){
 
-        this.recipeService.getRecipes().forEach(recipeAdded=>{
-          this.http.post("https://restaurant-app-a3c2e-default-rtdb.firebaseio.com/recipe.json",recipeAdded).subscribe(responseData => {console.log(responseData)});
-        })
-      }
+      //   this.recipeService.getRecipes().forEach(recipeAdded=>{
+      //     this.http.post("https://restaurant-app-a3c2e-default-rtdb.firebaseio.com/recipe.json",recipeAdded).subscribe(responseData => {console.log(responseData)});
+      //   })
+      // }
 }

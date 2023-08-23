@@ -1,14 +1,11 @@
-import { NgModule } from '@angular/core';
+import { AuthenticationGuardService } from './../services/authentication-guard.service';
+import { NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from  '@angular/common/http';
-
+import {HTTP_INTERCEPTORS, HttpClientModule} from  '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/navbar/navbar.component';
 import { RecipeComponent } from 'src/pages/recipes/recipe/recipe.component';
-import { RecipeListComponent } from 'src/pages/recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from 'src/pages/recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from 'src/pages/recipes/recipe-item/recipe-item.component';
 import { ShoppingEditComponent } from 'src/pages/shopping/shopping-edit/shopping-edit.component';
 import { ShoppingListComponent } from 'src/pages/shopping/shopping-list/shopping-list.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -26,13 +23,20 @@ import { RecipeService } from 'src/services/recipe.service';
 import { ShoppingService } from 'src/services/shopping.service';
 import { NotFoundComponent } from 'src/pages/not-found/not-found.component';
 import { GameService } from 'src/services/game.service';
-import { RecipeEditComponent } from 'src/pages/recipes/recipe-edit/recipe-edit.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import Swal from 'sweetalert2'
 import { ShortenPipe } from 'src/pipes/shorten.pipe';
-import { FilterPipe } from 'src/pipes/filter.pipe';
-
-
+import { AuthInterceptorService } from 'src/services/auth-interceptor.service';
+import { LoggingInterceptorService } from 'src/services/logging-interceptor.service';
+import { AuthComponent } from 'src/pages/auth/auth.component';
+import { LoadingComponent } from 'src/components/loading/loading.component';
+import { AuthenticationInterceptorService } from 'src/services/authentication-interceptor.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { AlertComponent } from 'src/components/alert/alert.component';
+import { PlaceholderDirective } from 'src/directives/placeholder.directive';
+import { RecipeModuleModule } from 'src/pages/recipes/recipe-module/recipe-module.module';
 
 
 @NgModule({
@@ -40,15 +44,13 @@ import { FilterPipe } from 'src/pipes/filter.pipe';
     AppComponent,
     NavbarComponent,
     RecipeComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
     ShoppingEditComponent,
     ShoppingListComponent,
+    AuthComponent,
     GameControlComponent,
-    RecipeEditComponent,
     EvenComponent,
     OddComponent,
+    LoadingComponent,
     NewAccountComponent,
     AccountComponent,
     NotFoundComponent,
@@ -56,7 +58,8 @@ import { FilterPipe } from 'src/pipes/filter.pipe';
     CheckDirective,
     DropdownDirective,
     ShortenPipe,
-    FilterPipe
+    AlertComponent,
+    PlaceholderDirective,
 
   ],
   imports: [
@@ -64,16 +67,41 @@ import { FilterPipe } from 'src/pipes/filter.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RecipeModuleModule,
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true},
     AccountService,
     LogginService,
     RecipeService,
     ShoppingService,
+    AuthenticationGuardService,
     GameService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    CookieService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true}
+
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule implements OnInit {
+  userSubscription:Subscription= new Subscription();
+  constructor(private authentication: AuthenticationService, private router: Router, private recipeService: RecipeService){
+    //this.authentication.autoSingUp();
+    // this.userSubscription= this.authentication.userT.subscribe(user =>{
+    //   if(user!=null){
+    //     this.recipeService.getData();
+    //     console.log(user);
+
+    //     this.router.navigate(['home']);
+    //   }
+    //     //console.log(user);
+    // });
+
+  }
+  ngOnInit(): void {
+
+  }
+ }

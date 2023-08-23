@@ -45,7 +45,7 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('RestaurantApp');
   });
-  it(`should has 6 ingredients`, () => {
+  it(`should has 12 ingredients`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
