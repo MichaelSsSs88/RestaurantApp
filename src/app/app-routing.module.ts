@@ -2,7 +2,7 @@ import { AuthenticationGuardService } from './../services/authentication-guard.s
 //import { AuthGuard } from './../services/auth-guard.service';
 
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, PreloadingStrategy, RouterModule, Routes } from '@angular/router';
 import { AlertComponent } from 'src/components/alert/alert.component';
 import { AuthComponent } from 'src/pages/auth/auth.component';
 import { GameControlComponent } from 'src/pages/game-control/game-control.component';
@@ -17,32 +17,29 @@ import { ShoppingListComponent } from 'src/pages/shopping/shopping-list/shopping
 
 const routes: Routes = [
   {path: '',  redirectTo: '/login', pathMatch:'full'},
-  {path: 'login',component: AuthComponent},
-  {path: 'alert',component: AlertComponent},
-  { path: 'shopping', canActivate: [AuthenticationGuardService], component: ShoppingListComponent,
-  children:[
-    {path:'new',component: ShoppingEditComponent},
-    { path: ':id/edit', component:  ShoppingEditComponent}
-  ] },
-  {
-    path: 'home', canActivate: [AuthenticationGuardService], component: RecipeComponent,
-    children: [
-      { path: '', component:  RecipeDetailComponent},
-      { path: 'new', component:  RecipeEditComponent},
-      { path: 'game', component: GameControlComponent },
-      { path: ':id', component:  RecipeDetailComponent},
-      { path: ':id/edit', component:  RecipeEditComponent/*, children:[
-        { path: '', component:  ShoppingEditComponent},
-      ]*/}
-    ]
-  },
+  {path: 'login', loadChildren:()=>import('./../pages/auth/auth/auth.module').then((m)=>m.AuthModule)},
+  {path: 'home', loadChildren:()=>import('./../pages/recipes/recipe-module/recipe-module.module').then((m)=>m.RecipeModuleModule)},
+  {path: 'shopping', loadChildren:()=>import('./../pages/shopping/shopping-module/shopping-module.module').then((m)=>m.ShoppingModuleModule)},
+  //{path: 'login',component: AuthComponent},
+  // {
+  //   path: 'home', canActivate: [AuthenticationGuardService], component: RecipeComponent,
+  //   children: [
+  //     { path: '', component:  RecipeDetailComponent},
+  //     { path: 'new', component:  RecipeEditComponent},
+  //     { path: 'game', component: GameControlComponent },
+  //     { path: ':id', component:  RecipeDetailComponent},
+  //     { path: ':id/edit', component:  RecipeEditComponent/*, children:[
+  //       { path: '', component:  ShoppingEditComponent},
+  //     ]*/}
+  //   ]
+  // },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }
   //{path:'home/:id/:name', component: RecipeComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

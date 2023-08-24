@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, EventEmitter, OnChanges, OnDestroy, OnIni
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
+import { AuthenticationService } from 'src/services/authentication.service';
 import { ShoppingService } from 'src/services/shopping.service';
 
 
@@ -26,7 +27,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
   signin: FormGroup;
   //@Output() addProduct = new EventEmitter();
 
-  constructor(private cd: ChangeDetectorRef, private shoppingService:ShoppingService, private router:Router, private route: ActivatedRoute) {
+  constructor(private cd: ChangeDetectorRef, private shoppingService:ShoppingService, private router:Router, private route: ActivatedRoute, private authentication:AuthenticationService) {
 
     this.subscriber= this.router.events.pipe(filter(event=> event instanceof NavigationEnd)).subscribe((event)=>{
         this.index= this.route.snapshot.params['id'];
@@ -43,6 +44,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
     this.cd.detectChanges();//Take care, this help to solve issues about changes on the style change detection
   }
   ngOnInit(): void {
+    this.authentication.autoSingUp();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.signin= new FormGroup({

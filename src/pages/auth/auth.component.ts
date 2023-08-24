@@ -45,8 +45,8 @@ export class AuthComponent implements AfterContentChecked, OnInit, AfterViewInit
       this.status = auth;
     });
     this.userSubscription=this.authentication.userT.subscribe(user => {
-
-      if (user!=null) {
+      //alert(this.router.url);
+      if (user!=null&&this.router.url.match("/login")) {
           this.router.navigate(['home']);
       }
     });

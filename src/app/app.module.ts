@@ -37,53 +37,50 @@ import { AuthenticationService } from 'src/services/authentication.service';
 import { AlertComponent } from 'src/components/alert/alert.component';
 import { PlaceholderDirective } from 'src/directives/placeholder.directive';
 import { RecipeModuleModule } from 'src/pages/recipes/recipe-module/recipe-module.module';
+import { ShoppingModuleModule } from 'src/pages/shopping/shopping-module/shopping-module.module';
+import { AuthModule } from 'src/pages/auth/auth/auth.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    RecipeComponent,
-    ShoppingEditComponent,
-    ShoppingListComponent,
-    AuthComponent,
+    //RecipeComponent,
     GameControlComponent,
     EvenComponent,
     OddComponent,
-    LoadingComponent,
-    NewAccountComponent,
-    AccountComponent,
+    //NewAccountComponent,
+    //AccountComponent,
     NotFoundComponent,
     ColorDirectiveDirective,
-    CheckDirective,
     DropdownDirective,
-    ShortenPipe,
-    AlertComponent,
-    PlaceholderDirective,
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    AuthModule,
+   // ShoppingModuleModule,
     RecipeModuleModule,
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true},
-    AccountService,
-    LogginService,
-    RecipeService,
-    ShoppingService,
-    AuthenticationGuardService,
-    GameService,
-    CookieService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true}
 
+    //ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
   ],
+      providers: [
+  //   {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true},
+  //   AccountService,
+  //   LogginService,
+  //   RecipeService,
+  //   ShoppingService,
+  //   AuthenticationGuardService,
+  //   GameService,
+  //   CookieService,
+  //   {provide: LocationStrategy, useClass: HashLocationStrategy},
+  //   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+       {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true}
+
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit {

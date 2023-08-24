@@ -10,11 +10,11 @@ import { GameControlComponent } from 'src/pages/game-control/game-control.compon
 
 const routes: Routes = [
   {
-    path: 'home', canActivate: [AuthenticationGuardService], component: RecipeComponent,
+    //path: 'home', canActivate: [AuthenticationGuardService], component: RecipeComponent,
+    path: '', canActivate: [AuthenticationGuardService], component: RecipeComponent,
     children: [
       { path: '', component:  RecipeDetailComponent},
       { path: 'new', component:  RecipeEditComponent},
-      { path: 'game', component: GameControlComponent },
       { path: ':id', component:  RecipeDetailComponent},
       { path: ':id/edit', component:  RecipeEditComponent/*, children:[
         { path: '', component:  ShoppingEditComponent},

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { ShoppingService } from 'src/services/shopping.service';

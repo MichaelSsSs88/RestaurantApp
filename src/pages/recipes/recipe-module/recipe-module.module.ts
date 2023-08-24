@@ -17,6 +17,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggingInterceptorService } from 'src/services/logging-interceptor.service';
 import { AuthInterceptorService } from 'src/services/auth-interceptor.service';
 import { AuthenticationInterceptorService } from 'src/services/authentication-interceptor.service';
+import { RecipeComponent } from '../recipe/recipe.component';
+import { ShortenPipe } from 'src/pipes/shorten.pipe';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -24,34 +27,25 @@ import { AuthenticationInterceptorService } from 'src/services/authentication-in
   declarations: [
     RecipeListComponent,
     RecipeDetailComponent,
+    RecipeComponent,
     RecipeEditComponent,
     RecipeItemComponent,
-    FilterPipe
+    FilterPipe,
+    ShortenPipe,
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
+    //CommonModule,
+    //FormsModule,
+    //ReactiveFormsModule,
+    //RouterModule,
+    SharedModule,
     RecipeRoutingModule
   ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true},
-    AccountService,
-    LogginService,
-    RecipeService,
-    AuthenticationGuardService,
-    CookieService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true}
-
-  ],
-  exports: [
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeEditComponent,
-    RecipeItemComponent
-  ]
+  // exports: [
+  //   RecipeListComponent,
+  //   RecipeDetailComponent,
+  //   RecipeEditComponent,
+  //   RecipeItemComponent
+  // ]
 })
 export class RecipeModuleModule { }
