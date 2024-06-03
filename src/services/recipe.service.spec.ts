@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { RecipeService } from './recipe.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { recipe } from 'src/pages/recipes/recipe.model';
+import { recipe } from 'src/views/recipes/recipe.model';
 import { ingredient } from 'src/shared/ingredient.model';
 
 class HttpClientMock {

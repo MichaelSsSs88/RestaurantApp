@@ -1,0 +1,17 @@
+<div class="mt-10">
+  <p class="mt-24 text-black">Cantidad Counter Selector:{{counterSelector | async}}</p>
+  <p class="mt-24 text-black">Cantidad  Double Counter Selector:{{doubleCounterSelector | async}}</p>
+  <div class="flex-row">
+    <button class="bg-green-700 border-2 p-2 shadow-black shadow-2xl" (click)="incrementSelector()">Increment</button>
+    <button class="bg-red-700 border-2 p-2" (click)="decrementSelector()">Decrement</button>
+  </div>
+  <p class="mt-24 text-black">Cantidad ounter: {{counterReducerFn | async}}</p>
+  <button class="bg-green-700 border-2 p-2 shadow-black shadow-2xl" (click)="incrementReducerFn()">Increment</button>
+  <button class="bg-red-700 border-2 p-2" (click)="decrementReducerFn()">Decrement</button>
+  <br />
+  <p class="mt-24 text-black">Cantidad CounterReducerConst:{{counterReducerConst | async}}</p>
+  <div class="flex-row">
+    <button class="bg-green-700 border-2 p-2 shadow-black shadow-2xl" (click)="increment()">Increment</button>
+    <button class="bg-red-700 border-2 p-2" (click)="decrement()">Decrement</button>
+  </div>
+</div>

@@ -1,9 +1,9 @@
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
-import { BehaviorSubject, Subject, catchError, tap, throwError } from "rxjs";
+import { BehaviorSubject, Observable, Subject, catchError, tap, throwError } from "rxjs";
 import { ResponseInterface } from "src/interfeces/response.interface";
-import { User } from "src/pages/auth/user.model";
+import { User } from "src/views/auth/user.model";
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class AuthenticationService {
   type: string = 'signUp';
-  //userT = new Subject<User>();
+  userTx = new Observable<User>();
   userT = new BehaviorSubject<User>(null);
   user: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   token: string = null;

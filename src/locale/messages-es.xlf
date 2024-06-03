@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="3301086086650990787" datatype="html">
+        <source>Register</source>
+        <target>Registro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5349892777803840578" datatype="html">
+        <source><x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input (click)=&quot;statusChanged()&quot; type=&quot;checkbox&quot;
+              [(ngModel)]=&quot;isLogin&quot; value class=&quot;sr-only peer&quot; checked&gt;"/><x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div
+              class=&quot;w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[&apos;&apos;] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600&quot;&gt;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">19,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <target>Acceso</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <target>Nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3262236020277300799" datatype="html">
+        <source>Phone</source>
+        <target>Telefono</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <target>Correo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1431416938026210429" datatype="html">
+        <source>Password</source>
+        <target>Contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3241357959735682038" datatype="html">
+        <source>Confirm Password</source>
+        <target>Confirmar Contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{isLogin?&quot;Login&quot;:&quot;Register&quot;}}"/></source>
+         <target><x id="INTERPOLATION" equiv-text="{{isLogin?&quot;Logeo&quot;:&quot;Registro&quot;}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1737753151350322492" datatype="html">
+        <source><x id="PH" equiv-text="&quot;Please type the name&quot;"/></source>
+         <target><x id="PH" equiv-text="&quot;Escriba el nombre&quot;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.ts</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.ts</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/auth/auth.component.ts</context>
+          <context context-type="linenumber">150</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -8,7 +8,7 @@ import { AuthService } from 'src/services/auth.service';
 import { Router } from '@angular/router';
 import { Subscriber, Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/services/authentication.service';
-import { User } from 'src/pages/auth/user.model';
+import { User } from 'src/views/auth/user.model';
 
 @Component({
   selector: 'app-navbar',

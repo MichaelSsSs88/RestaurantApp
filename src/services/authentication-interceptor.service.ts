@@ -4,7 +4,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber, Subscription, exhaustMap, take } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { User } from 'src/pages/auth/user.model';
+import { User } from 'src/views/auth/user.model';
 
 @Injectable({
   providedIn: 'root'

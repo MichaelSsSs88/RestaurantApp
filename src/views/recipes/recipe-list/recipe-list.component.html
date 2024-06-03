@@ -1,0 +1,7 @@
+
+<hr>
+<input type="text" [(ngModel)]="filteredStatus" class="mt-4 rounded-md w-full p-2" placeholder="Find by plate's name">
+<div class="box-border h-auto w-full p-4  my-5 border-4 rounded-lg bg-gray-400 active:bg-white focus:bg-white hover:scale-105" *ngFor="let item of recipeList |filter:filteredStatus:'name' ; index as i"  [routerLink]="['/home/']+[item.id]+['/detail']">
+    <app-recipe-item name={{item.name}} description={{item.description}} imagePath={{item.imagePath}} ingredients={{item.ingredients}}></app-recipe-item>
+</div>
+

@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
-import { recipe } from './../pages/recipes/recipe.model';
+import { recipe } from '../views/recipes/recipe.model';
 import { ingredient } from 'src/shared/ingredient.model';
 import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Subject, exhaustMap, map, take, tap } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { User } from 'src/pages/auth/user.model';
+import { User } from 'src/views/auth/user.model';
 
 
 @Injectable({

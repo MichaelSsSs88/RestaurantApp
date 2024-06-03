@@ -8,6 +8,7 @@ import { ingredient } from 'src/shared/ingredient.model';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  standalone:false
   //providers:[AccountService]
 })
 export class AppComponent implements OnInit {
